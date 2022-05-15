@@ -3,17 +3,22 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConvexeController">
    <children>
-      <TextArea prefHeight="750.0" prefWidth="1600.0" />
-      <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="200.0">
+      <TextArea fx:id="txtAreaPoints" prefHeight="750.0" prefWidth="1600.0" />
+      <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="251.0">
          <children>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Insérer un fichier" />
+            <Button fx:id="btnFileChooser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openFileChooser" prefHeight="30.0" prefWidth="200.0" text="Insérer un fichier" />
+            <Label fx:id="lblFileChoosen" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="266.0" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
             <ChoiceBox prefWidth="150.0">
                <VBox.margin>
                   <Insets top="30.0" />
