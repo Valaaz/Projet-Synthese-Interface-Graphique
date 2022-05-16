@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Optional;
 
 public class ConvexeController {
     private boolean isFileSelected = false;
@@ -27,6 +28,8 @@ public class ConvexeController {
     @FXML
     public void initialize() {
         txtAreaPoints.setEditable(false);
+
+        lblFileChoosen.setVisible(false);
 
         chBoxConvexeAlgo.getItems().add("Convexe Hull");
         chBoxConvexeAlgo.getItems().add("Slow Convexe Hull");
@@ -71,6 +74,8 @@ public class ConvexeController {
         if (selectedFile != null) {
             try {
                 isFileSelected = true;
+                lblFileChoosen.setVisible(true);
+
                 btnFileChooser.setText("Sélectionner un autre fichier");
                 lblFileChoosen.setText("Fichier sélectionné : " + selectedFile.getName());
                 StringBuilder text = new StringBuilder();
@@ -96,9 +101,31 @@ public class ConvexeController {
 
             alert.setTitle("Erreur fichier");
             alert.setHeaderText("Aucun fichier n'a été sélectionné");
-            alert.setContentText("Sélectionnez un fichier puis validez ensuite");
+            alert.setContentText("Sélectionnez un fichier avec le bouton \"Insérer un fichier\" puis validez ensuite");
 
             alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void reset() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        alert.setTitle("Confirmation de réinitialisation");
+        alert.setHeaderText("Êtes-vous sûr de vouloir tout réinitialiser ?");
+        alert.setContentText("Si vous confirmez, cela effacera les points affichés et vous devrez de nouveau sélectionner un fichier");
+
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get().equals(ButtonType.OK)) {
+            btnFileChooser.setText("Insérer un fichier");
+            lblFileChoosen.setVisible(false);
+            isFileSelected = false;
+
+            txtAreaPoints.clear();
+
+            chBoxConvexeAlgo.getSelectionModel().select(0);
+            chBoxSortAlgo.getSelectionModel().select(0);
         }
     }
 }
