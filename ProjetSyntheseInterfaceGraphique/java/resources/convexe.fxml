@@ -14,24 +14,34 @@
       <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="251.0">
          <children>
             <Button fx:id="btnFileChooser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openFileChooser" prefHeight="30.0" prefWidth="200.0" text="Insérer un fichier" />
-            <Label fx:id="lblFileChoosen" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="266.0" textAlignment="CENTER">
+            <Label fx:id="lblFileChoosen" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <ChoiceBox prefWidth="150.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Choisissez un algorithme pour calculer l'enveloppe convexe :" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
+            </Label>
+            <ChoiceBox fx:id="chBoxConvexeAlgo" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
             </ChoiceBox>
-            <ChoiceBox prefWidth="150.0">
+            <Label fx:id="lblSortAlgo" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Choisissez un algorithme de tri :" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
+            </Label>
+            <ChoiceBox fx:id="chBoxSortAlgo" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
             </ChoiceBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Valider">
+                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validate" prefHeight="30.0" prefWidth="80.0" text="Valider">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
