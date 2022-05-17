@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT void JNICALL Java_application_MyClass_myPrint
   (JNIEnv *, jobject, jstring, jint);
 
+/*
+ * Class:     application_MyClass
+ * Method:    findConvexHull
+ * Signature: (Ljava/lang/String;Ljava/lang/String;II)V
+ */
+JNIEXPORT void JNICALL Java_application_MyClass_findConvexHull
+  (JNIEnv *, jobject, jstring, jstring, jint, jint);
+
 #ifdef __cplusplus
 }
 #endif

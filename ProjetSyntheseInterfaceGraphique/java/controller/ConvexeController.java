@@ -3,7 +3,10 @@ package controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -21,13 +24,13 @@ public class ConvexeController {
     @FXML
     Label lblFileChoosen, lblSortAlgo;
     @FXML
-    TextArea txtAreaPoints;
+    Pane panePoints;
     @FXML
     ChoiceBox<String> chBoxConvexeAlgo, chBoxSortAlgo;
 
     @FXML
     public void initialize() {
-        txtAreaPoints.setEditable(false);
+        panePoints.setStyle("-fx-background-color: #DCDCDC");
 
         lblFileChoosen.setVisible(false);
 
@@ -73,21 +76,25 @@ public class ConvexeController {
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             try {
+                panePoints.getChildren().clear();
                 isFileSelected = true;
                 lblFileChoosen.setVisible(true);
 
                 btnFileChooser.setText("Sélectionner un autre fichier");
                 lblFileChoosen.setText("Fichier sélectionné : " + selectedFile.getName());
-                StringBuilder text = new StringBuilder();
 
                 try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
+                    reader.readLine();
                     String line;
-                    while ((line = reader.readLine()) != null)
-                        text.append(line).append("\n");
+                    while ((line = reader.readLine()) != null) {
+                        String[] coordinates = line.split(" ");
+                        Point2D point = new Point2D(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
+                        Circle circle = new Circle(point.getX(), point.getY(), 2);
+                        panePoints.getChildren().add(circle);
+                    }
                 } catch (IOException e) {
                     System.err.println(e.getMessage());
                 }
-                txtAreaPoints.setText(String.valueOf(text));
             } catch (Exception e) {
                 System.err.println("Erreur: impossible d'utiliser le fichier");
             }
@@ -122,7 +129,7 @@ public class ConvexeController {
             lblFileChoosen.setVisible(false);
             isFileSelected = false;
 
-            txtAreaPoints.clear();
+            panePoints.getChildren().clear();
 
             chBoxConvexeAlgo.getSelectionModel().select(0);
             chBoxSortAlgo.getSelectionModel().select(0);
