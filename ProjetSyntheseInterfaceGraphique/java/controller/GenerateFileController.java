@@ -46,7 +46,6 @@ public class GenerateFileController {
                     pointsToSave.add(circle);
                 }
             }
-
         });
     }
 
@@ -68,23 +67,33 @@ public class GenerateFileController {
 
     @FXML
     void validate() throws IOException {
-        FileChooser fileChooser = new FileChooser();
+        if (pointsToSave.size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
 
-        fileChooser.setTitle("Sauvegardez le fichier");
-        File homeDir = new File("./java/controller");
-        fileChooser.setInitialDirectory(homeDir);
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All", "*"),
-                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            alert.setTitle("Erreur de points");
+            alert.setHeaderText("Il n'y a pas de point à enregistrer");
+            alert.setContentText("Placez au moins un point pour pouvoir sauvegarder le fichier");
 
-        File newFile = fileChooser.showSaveDialog(new Stage());
-        if (newFile != null) {
-            String coordonates = String.valueOf(pointsToSave.size());
-            for (Circle point : pointsToSave) {
-                coordonates += "\n" + Math.round(point.getCenterX()) + " " + Math.round(point.getCenterY());
+            Optional<ButtonType> option = alert.showAndWait();
+        } else {
+            FileChooser fileChooser = new FileChooser();
+
+            fileChooser.setTitle("Sauvegardez le fichier");
+            File homeDir = new File("./java/controller");
+            fileChooser.setInitialDirectory(homeDir);
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All", "*"),
+                    new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+            File newFile = fileChooser.showSaveDialog(new Stage());
+            if (newFile != null) {
+                String coordonates = String.valueOf(pointsToSave.size());
+                for (Circle point : pointsToSave) {
+                    coordonates += "\n" + Math.round(point.getCenterX()) + " " + Math.round(point.getCenterY());
+                }
+                saveTextToFile(coordonates, newFile);
             }
-            saveTextToFile(coordonates, newFile);
         }
     }
 
