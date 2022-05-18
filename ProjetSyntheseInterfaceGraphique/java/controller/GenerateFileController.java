@@ -21,9 +21,8 @@ import java.util.Optional;
 
 public class GenerateFileController {
     private ArrayList<Circle> pointsToSave;
-
     @FXML
-    private Label lblFileChoosen;
+    private Label lblFileChoosen, lblInfo;
 
     @FXML
     private Pane panePoints;
@@ -36,10 +35,16 @@ public class GenerateFileController {
         panePoints.setStyle("-fx-background-color: #DCDCDC");
         pointsToSave = new ArrayList<Circle>();
 
+        lblInfo.setVisible(true);
+        lblInfo.setDisable(false);
+
         panePoints.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
                 if (e.isPrimaryButtonDown()) {
+                    lblInfo.setVisible(false);
+                    lblInfo.setDisable(true);
+
                     Point2D PHG = new Point2D(e.getX(), e.getY());
                     Circle circle = new Circle(PHG.getX(), PHG.getY(), 2);
                     panePoints.getChildren().add(circle);
@@ -62,6 +67,10 @@ public class GenerateFileController {
         if (option.get().equals(ButtonType.OK)) {
             panePoints.getChildren().clear();
             pointsToSave.clear();
+
+            panePoints.getChildren().add(lblInfo);
+            lblInfo.setVisible(true);
+            lblInfo.setDisable(false);
         }
     }
 
