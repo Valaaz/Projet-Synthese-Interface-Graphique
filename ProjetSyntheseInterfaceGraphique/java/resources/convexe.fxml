@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TabPane?>
 
 
-<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ImportFileController">
+<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConvexController">
    <tabs>
       <Tab fx:id="tabImportFile" closable="false" text="Importer un fichier" />
       <Tab fx:id="tabGenerateFile" closable="false" text="Générer un fichier" />

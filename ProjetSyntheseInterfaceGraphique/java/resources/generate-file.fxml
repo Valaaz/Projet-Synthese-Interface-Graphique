@@ -23,7 +23,7 @@
             </Label>
             <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validate" prefHeight="30.0" prefWidth="80.0" text="Sauvegarder">
+                  <Button fx:id="btnSave" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validate" prefHeight="30.0" prefWidth="80.0" text="Sauvegarder">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
